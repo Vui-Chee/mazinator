@@ -5,6 +5,7 @@ authors = ["Vui-Chee <vuicheesiew@gmail.com>"]
 edition = "2018"
 description = "Command line tool to generate beautiful maze."
 homepage = "https://github.com/Vui-Chee/mazinator"
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
