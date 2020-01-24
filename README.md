@@ -7,10 +7,7 @@ Command line tool to generate beautiful maze.
 Run `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
 
 #### Install crates and build
-`cargo install --path .`
-
-#### To rebuild
-`cargo install --force .`
+`cargo install mazinator`
 
 #### Run
 `mazinator [number of rows] [number of cols]`
