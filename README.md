@@ -16,5 +16,5 @@ Run `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
 `mazinator [number of rows] [number of cols]`
 
 <p align="center">
-<img src="https://github.com/Vui-Chee/mazinator/blob/master/assets/maze-image.png" height="600"/>
+<img src="https://github.com/Vui-Chee/mazinator/blob/master/assets/maze-image-dark.png" height="500"/>
 </p>
