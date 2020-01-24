@@ -1,5 +1,8 @@
-use super::super::structure::matrix::*;
-use super::super::structure::wall::*;
+use rand::seq::SliceRandom;
+use rand::thread_rng;
+
+use crate::structure::matrix::*;
+use crate::structure::wall::*;
 
 pub fn dfs(mat: &mut Matrix, walls: &mut Walls, i: usize, j: usize) {
     if i >= mat.rows {
@@ -14,25 +17,29 @@ pub fn dfs(mat: &mut Matrix, walls: &mut Walls, i: usize, j: usize) {
     mat.put(i, j, true);
     // println!("{} {}", i, j);
 
-    // TODO randomized choice of path
+    let mut rng = thread_rng();
+    let mut possibilities = [1, 2, 3, 4];
+    possibilities.shuffle(&mut rng);
 
-    // For valid adjacent cell, call dfs.
-    // Only lateral movement is permitted.
-    if i >= 1 && !mat.at(i - 1, j) {
-        walls.remove_wall(i - 1, j, false);
-        dfs(mat, walls, i - 1, j);
-    }
-    if i + 1 < mat.rows && !mat.at(i + 1, j) {
-        walls.remove_wall(i, j, false);
-        dfs(mat, walls, i + 1, j);
-    }
-    if j >= 1 && !mat.at(i, j - 1) {
-        walls.remove_wall(j - 1, i, true);
-        dfs(mat, walls, i, j - 1);
-    }
-    if j + 1 < mat.cols && !mat.at(i, j + 1) {
-        walls.remove_wall(j, i, true);
-        dfs(mat, walls, i, j + 1);
+    for ticket in possibilities.iter() {
+        // For valid adjacent cell, call dfs.
+        // Only lateral movement is permitted.
+        if *ticket == 1 && i >= 1 && !mat.at(i - 1, j) {
+            walls.remove_wall(i - 1, j, false);
+            dfs(mat, walls, i - 1, j);
+        }
+        if *ticket == 2 && i + 1 < mat.rows && !mat.at(i + 1, j) {
+            walls.remove_wall(i, j, false);
+            dfs(mat, walls, i + 1, j);
+        }
+        if *ticket == 3 && j >= 1 && !mat.at(i, j - 1) {
+            walls.remove_wall(j - 1, i, true);
+            dfs(mat, walls, i, j - 1);
+        }
+        if *ticket == 4 && j + 1 < mat.cols && !mat.at(i, j + 1) {
+            walls.remove_wall(j, i, true);
+            dfs(mat, walls, i, j + 1);
+        }
     }
 }
 
