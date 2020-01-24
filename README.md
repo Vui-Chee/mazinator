@@ -10,7 +10,7 @@ Run `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
 `cargo install --path .`
 
 #### To rebuild
-`cargo install --path --force .`
+`cargo install --force .`
 
 #### Run
 `mazinator [number of rows] [number of cols]`
