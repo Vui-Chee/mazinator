@@ -7,4 +7,6 @@ rust:
 jobs:
   include:
     - stage: unittest
-      script: cargo test --verbose
+      script: 
+        - cargo build --verbose
+        - cargo test --verbose
