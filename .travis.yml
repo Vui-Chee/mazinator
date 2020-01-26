@@ -4,9 +4,11 @@ rust:
   - beta
   - nightly
 
+cache: cargo
+
 jobs:
   include:
     - stage: unittest
-      script: 
+      script:
         - cargo build --verbose
         - cargo test --verbose
