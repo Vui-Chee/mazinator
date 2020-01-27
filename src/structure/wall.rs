@@ -56,5 +56,47 @@ impl Walls {
 
 #[cfg(test)]
 mod wall_tests {
-    //
+    use super::*;
+
+    #[test]
+    fn constructed_correct_walls() {
+        let rows = 5;
+        let cols = 7;
+        // Should produce rows - 1 vectors of vectors with cols number of WallType.
+        let flat_walls = create_walls_type(rows - 1, cols - 1, WallType::Horizontal);
+        assert!(flat_walls.len() == rows - 1);
+        assert!(flat_walls[0].len() == cols);
+        // Also all WallType must be horizontal.
+        for row_vec in flat_walls.iter() {
+            for wall in row_vec.iter() {
+                assert_eq!(*wall, WallType::Horizontal);
+            }
+        }
+
+        // Should produce cols - 1 vectors of vectors with rows number of WallType.
+        let side_walls = create_walls_type(cols - 1, rows - 1, WallType::Vertical);
+        assert!(side_walls.len() == cols - 1);
+        assert!(side_walls[0].len() == rows);
+        // Also all WallType must be horizontal.
+        for row_vec in side_walls.iter() {
+            for wall in row_vec.iter() {
+                assert_eq!(*wall, WallType::Vertical);
+            }
+        }
+    }
+
+    #[test]
+    fn remove_wall_correctly() {
+        // Two possible cases, remove flat or side wall.
+        // Removing a wall involves toggling the enum.
+        let rows = 5;
+        let cols = 7;
+        let mut inner_walls = Walls::new(rows - 1, cols - 1);
+        // Remove side wall
+        inner_walls.remove_wall(0, 0, true);
+        assert_eq!(inner_walls.side_walls[0][0], WallType::Missing);
+        // Remove flat wall
+        inner_walls.remove_wall(1, 3, false);
+        assert_eq!(inner_walls.flat_walls[1][3], WallType::Missing);
+    }
 }

@@ -1,44 +1,28 @@
-use rand::seq::SliceRandom;
-use rand::thread_rng;
+use std::cmp::min;
 
 use crate::structure::matrix::*;
 use crate::structure::wall::*;
 
 pub fn dfs(mat: &mut Matrix, walls: &mut Walls, i: usize, j: usize) {
-    if i >= mat.rows {
-        panic!("i == {} is Out of bounds", i);
-    }
-
-    if j >= mat.cols {
-        panic!("j == {} is Out of bounds", j);
+    if i >= mat.rows || j >= mat.cols {
+        return;
     }
 
     // Visit current cell.
     mat.put(i, j, true);
-    // println!("{} {}", i, j);
 
-    let mut rng = thread_rng();
-    let mut possibilities = [1, 2, 3, 4];
-    possibilities.shuffle(&mut rng);
-
-    for ticket in possibilities.iter() {
-        // For valid adjacent cell, call dfs.
-        // Only lateral movement is permitted.
-        if *ticket == 1 && i >= 1 && !mat.at(i - 1, j) {
-            walls.remove_wall(i - 1, j, false);
-            dfs(mat, walls, i - 1, j);
-        }
-        if *ticket == 2 && i + 1 < mat.rows && !mat.at(i + 1, j) {
-            walls.remove_wall(i, j, false);
-            dfs(mat, walls, i + 1, j);
-        }
-        if *ticket == 3 && j >= 1 && !mat.at(i, j - 1) {
-            walls.remove_wall(j - 1, i, true);
-            dfs(mat, walls, i, j - 1);
-        }
-        if *ticket == 4 && j + 1 < mat.cols && !mat.at(i, j + 1) {
-            walls.remove_wall(j, i, true);
-            dfs(mat, walls, i, j + 1);
+    let locations = mat.get_neighbours(i, j);
+    for loc in locations.iter() {
+        if !mat.at(loc.0, loc.1) {
+            // Movement left or right involves
+            // changing of column coordinates.
+            let left_or_right = loc.1 != j;
+            if left_or_right {
+                walls.remove_wall(min(loc.1, j), i, left_or_right);
+            } else {
+                walls.remove_wall(min(loc.0, i), j, left_or_right);
+            }
+            dfs(mat, walls, loc.0, loc.1);
         }
     }
 }
