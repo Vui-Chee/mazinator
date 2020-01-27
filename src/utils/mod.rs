@@ -1,4 +1,5 @@
 use rand::Rng;
+use std::env::Args;
 use std::process;
 
 #[derive(Debug)]
@@ -11,15 +12,15 @@ pub struct Config {
 pub struct Options {}
 
 impl Options {
-    pub fn parse(args: &Vec<String>) -> Config {
+    pub fn parse(mut args: Args) -> Config {
         let mut rows = None;
         let mut cols = None;
-        let mut algorithm = "dfs"; // default is dfs
+        let mut algorithm = String::from("dfs"); // default is dfs
 
-        let mut args_excl = args.iter();
-        args_excl.next();
+        // Skip the first arg (path of program)
+        args.next();
 
-        for arg in args_excl {
+        for arg in args {
             match arg.to_string().parse::<usize>() {
                 Ok(num) => {
                     if num <= 1 {
@@ -58,7 +59,7 @@ impl Options {
         Config {
             rows: rows.unwrap(),
             cols: cols.unwrap(),
-            algorithm: String::from(algorithm),
+            algorithm: algorithm,
         }
     }
 }
