@@ -11,6 +11,6 @@ jobs:
 deploy:
   provider: cargo
   on:
-    branch: deployment
+    branch: master
   token:
     secure: Xji737l3rI7blW/NW1RuTLk1tcQniNN43YagRktPMqiE/hL7wEVsrglg6clb3nXvVGRLrsxxwLHt6iF4b7Tn3D7aToXbInv6jiFbiJaOPFthOredmJwSgNfcp1yJMZmb9qOWqnRh6UzqRRPJ4ScwEe/tjAkCO52hVBJGnLL/YXn7y/lgDAWikyftDKeix0yXNew4OHf7tmC3HwcRkQkQALDFDOWpu7IjVSrWNktN6ctCiWNIvt1/2hpKYxS+0PRpwZAcDsia4EKYq90k0nfYMHD2+htATiPm1E/eunlhF0dCwSVcwcTciXdAhdhwRt8mqAYDtjRANZhwCESAp9cXYi1YCyAUvAxj/EUd++nNyFoiiZKmwYHqnwdd6bp/+1TMw+4/A4D2kc6YpFoGiO4XRHTRirSVarfjlEUYsOlvb9/DkYIzNJXAGxjPfix62RsvHJNCkx5XA6yXfoZZU5bZaK0WlOEG0jatbcu+uPQLJ8k3tlupl6XWB/LksKLIi5hKlqtVDpvYUmn4X90l54b3mUHMGpOJHzu37xhtN37Z/BB6cU7nKgPTEaDXjTCuXFv3jLwBRIOnY/YJ16s9oQp6QA9kjKvBSWug64/4G5pp3kblW0t4XL++le7wQkAkNY+Sl1HSrBccEflLDNXNMMjRoV0/d6UEnJvikmjCRP54X9U=
