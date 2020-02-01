@@ -2,8 +2,13 @@ language: rust
 rust:
 - stable
 cache: cargo
+install:
+  - cargo install cargo-audit
 jobs:
   include:
+  - stage: audit
+    script:
+      - cargo audit
   - stage: unittest
     script:
     - cargo build --verbose
