@@ -8,3 +8,6 @@ jobs:
     script:
     - cargo build --verbose
     - cargo test --verbose
+notifications:
+  email:
+    on_success: never
