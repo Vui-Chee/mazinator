@@ -51,22 +51,3 @@ pub fn bfs(mat: &mut Matrix, walls: &mut Walls, i: usize, j: usize) {
         }
     }
 }
-
-#[cfg(test)]
-mod bfs_test {
-    use super::*;
-
-    #[test]
-    fn visited_all_cells() {
-        let rows = 5;
-        let cols = 5;
-        let mut mat = Matrix::new(rows, cols);
-        let mut walls = Walls::new(rows - 1, cols - 1);
-        bfs(&mut mat, &mut walls, 1, 3);
-        for i in 0..mat.rows {
-            for j in 0..mat.cols {
-                assert_eq!(mat.at(i, j), true);
-            }
-        }
-    }
-}
