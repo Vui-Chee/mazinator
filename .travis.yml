@@ -2,8 +2,13 @@ language: rust
 rust:
 - stable
 cache: cargo
+install:
+  - cargo install cargo-audit
 jobs:
   include:
+  - stage: audit
+    script:
+    - if [ "$TRAVIS_PULL_REQUEST" != "false" ];then cargo audit; fi
   - stage: unittest
     script:
     - cargo build --verbose
