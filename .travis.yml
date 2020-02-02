@@ -8,7 +8,7 @@ jobs:
   include:
   - stage: audit
     script:
-      - cargo audit
+    - if [ "$TRAVIS_PULL_REQUEST" != "false" ];then cargo audit; fi
   - stage: unittest
     script:
     - cargo build --verbose
